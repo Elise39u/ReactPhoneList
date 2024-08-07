@@ -68,11 +68,23 @@ class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOver
                     </Col>
                     </Row>
                 </Form>
-                <ul className="phoneULEle">
-                    {this.state.filteredNumbers.map((number, index) => (
-                        <li className="phoneListLiEle" key={index}><p className="indexNumber"> {index} </p> {number}</li>
-                    ))}
-                </ul>
+                {this.state.filteredNumbers.length === 0 ? (
+                    <Alert variant="warning">
+                        <Alert.Heading>Oh snap! Something went wrong</Alert.Heading>
+                        <p>
+                           Either your search result dindt match any results or an error occuerd! <br />
+                           Please try again with a different result or try again later!
+                        </p>
+                    </Alert>
+                ) : (
+                    <ul className="phoneULEle">
+                        {this.state.filteredNumbers.map((number, index) => (
+                            <li className="phoneListLiEle" key={index}>
+                                <p className="indexNumber">{index}</p> {number}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         );
     }
