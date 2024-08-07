@@ -1,0 +1,30 @@
+.overviewContainer {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.phoneListLiEle { 
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+.phoneULEle {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.indexNumber {
+    width: 2%; 
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c0c0c0;
+    background-color: #f2f2f2;
+    margin-right: 10px; 
+    margin-top: 15px;
+    border-radius: 3px; 
+    font-weight: bold;
+}

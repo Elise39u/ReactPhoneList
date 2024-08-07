@@ -1,15 +1,18 @@
 import React from "react"
-import { Alert } from "react-bootstrap";
+import "../../css/phonenumbers/Overview.css"
+import { Alert, Col, Form, Row } from "react-bootstrap";
 
 // Interface om er voor te zorgen dat Numbers ook echt alleen een number array is 
 interface PhoneNumberOverviewProps {
     numbers: number[];
 }
 
-// Interface voor error handeling 
+// Interface voor error handeling with support of the search query
 interface PhoneNumberOverviewState {
     showError: boolean;
+    searchQuery: string;
     showModal: boolean;
+    filteredNumbers: number[];
 }
 
 class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOverviewState> {
@@ -18,9 +21,23 @@ class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOver
 
         this.state = {
             showError: this.props.numbers.length > 8,
+            searchQuery: '',
             showModal: true,
+            filteredNumbers: this.props.numbers,
         };
     }
+
+    //Search function to filter Phonenumber list based on the given input 
+    handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value;
+        this.setState({ searchQuery: query });
+
+        // Filter numbers based on the search query
+        const filtered = this.props.numbers.filter((number) =>
+            number.toString().includes(query)
+        );
+        this.setState({ filteredNumbers: filtered });
+    };
 
     render() {
         if (this.state.showError) {
@@ -36,11 +53,24 @@ class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOver
         }
 
         return (
-            <div>
+            <div className="overviewContainer">
                 <h2>Phone Numbers</h2>
-                <ul>
-                    {this.props.numbers.map((number, index) => (
-                        <li key={index}>{number}</li>
+                <Form>
+                    <Row>
+                    <Col xs="auto">
+                        <Form.Control
+                        type="text"
+                        placeholder="Search"
+                        className="mr-sm-2"
+                        value={this.state.searchQuery}
+                        onChange={this.handleSearch}
+                        />
+                    </Col>
+                    </Row>
+                </Form>
+                <ul className="phoneULEle">
+                    {this.state.filteredNumbers.map((number, index) => (
+                        <li className="phoneListLiEle" key={index}><p className="indexNumber"> {index} </p> {number}</li>
                     ))}
                 </ul>
             </div>
