@@ -10,7 +10,6 @@ function NavMenu() {
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Phone Number Overview</Nav.Link>
-                        <Nav.Link href="#">Add a phone number</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

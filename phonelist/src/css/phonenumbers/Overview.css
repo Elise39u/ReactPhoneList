@@ -28,3 +28,24 @@
     border-radius: 3px; 
     font-weight: bold;
 }
+
+body {
+    background-color: #e4e4e4!important;
+}
+
+.overviewContainer {
+    background-color: #f2f2f2;
+    padding: 25px;
+    margin-top: 2%;
+    border-radius: 15px; 
+}
+
+.FormButton {
+    margin-top: 1%;
+}
+
+.svgImages {
+    float: right;
+    width: 35px;
+    height: 35px;
+}

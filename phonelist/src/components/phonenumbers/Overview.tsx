@@ -1,6 +1,8 @@
 import React from "react"
 import "../../css/phonenumbers/Overview.css"
-import { Alert, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
+import Pencil from "../../img/svg/pencil-svgrepo-com.svg";
+import TrashCan from "../../img/svg/trashcan-svgrepo-com.svg"
 
 // Interface om er voor te zorgen dat Numbers ook echt alleen een number array is 
 interface PhoneNumberOverviewProps {
@@ -68,6 +70,11 @@ class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOver
                     </Col>
                     </Row>
                 </Form>
+                {this.props.numbers.length < 8 &&
+                    <Button className="FormButton" variant="primary" size="sm">
+                        Add number
+                    </Button>
+                }
                 {this.state.filteredNumbers.length === 0 ? (
                     <Alert variant="warning">
                         <Alert.Heading>Oh snap! Something went wrong</Alert.Heading>
@@ -81,6 +88,8 @@ class Overview extends React.Component<PhoneNumberOverviewProps, PhoneNumberOver
                         {this.state.filteredNumbers.map((number, index) => (
                             <li className="phoneListLiEle" key={index}>
                                 <p className="indexNumber">{index}</p> {number}
+                                <img className={"svgImages pencil"} src={Pencil}  alt={"edit pencil svg"} />
+                                <img className={"svgImages trashcan"} src={TrashCan}  alt={"delete trashcan svg"}/>
                             </li>
                         ))}
                     </ul>
